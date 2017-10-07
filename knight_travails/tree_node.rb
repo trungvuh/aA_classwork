@@ -1,4 +1,4 @@
-class PolyTreeNode
+class TreeNode
   def initialize(value)
     @parent = nil
     @children = []
@@ -95,6 +95,7 @@ class KnightPathFinder
   end
 
   def build_move_tree(root)
+
   end
 
 end
