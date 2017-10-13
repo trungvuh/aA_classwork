@@ -12,7 +12,7 @@ class PolyTreeNode
   def children
     @children
   end
-
+   
   def value
     @value
   end
