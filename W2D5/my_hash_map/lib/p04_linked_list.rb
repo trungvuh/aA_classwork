@@ -13,15 +13,23 @@ class Node
   end
 
   def remove
+    # current_node = self
+    self.prev.next = self.next if self.prev
+    self.next.prev = self.prev if self.next
+    self.next = nil
+    self.prev = nil
+    self
     # optional but useful, connects previous link to next link
     # and removes self from list.
   end
 end
 
 class LinkedList
+  include Enumerable
+
   def initialize
-    @head = Node.new("head", nil)
-    @tail = Node.new("tail", nil)
+    @head = Node.new
+    @tail = Node.new
     @head.next = @tail
     @tail.prev = @head
   end
@@ -32,47 +40,67 @@ class LinkedList
   end
 
   def first
-    @head.next
+    empty? ? nil : @head.next
   end
 
   def last
-    @tail.prev
+    empty? ? nil : @tail.prev
   end
 
   def empty?
-    first == @tail
+    @head.next == @tail
   end
 
   def get(key)
-
+    each { |node| return node.val if node.key == key }
+    nil
   end
 
   def include?(key)
-
+    any? { |node| node.key == key }
   end
 
   def append(key, val)
-    new_last_node = Node.new(key, val)
-    old_last_node = @tail.prev
-    old_last_node.next = new_last_node
-    new_last_node.prev = old_last_node
-    new_last_node.next = @tail
-    @tail.prev = new_last_node
+    new_node = Node.new(key, val)
+
+    @tail.prev.next = new_node
+    new_node.prev = @tail.prev
+    new_node.next = @tail
+    @tail.prev = new_node
+
+    new_node
   end
 
   def update(key, val)
-    self.each do |
+    each do |node|
+      if node.key == key
+        node.val = val
+        return node
+      end
+    end
   end
 
   def remove(key)
-
+    each do |node|
+      if node.key == key
+        node.remove
+        return node.val
+      end
+    end
+    nil
   end
 
   def each
+    current_node = @head.next
+
+    until current_node == @tail
+      yield current_node
+      current_node = current_node.next
+    end
   end
 
   # uncomment when you have `each` working and `Enumerable` included
-  # def to_s
-  #   inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
-  # end
+  def to_s
+    inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
+  end
 end
