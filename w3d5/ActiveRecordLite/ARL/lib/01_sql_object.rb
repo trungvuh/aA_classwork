@@ -106,6 +106,7 @@ class SQLObject
     col_names = cols.join(', ')
     question_marks = (["?"] * cols.length).join(', ')
 
+    #for insert, values put in DOESNT have id value.
     values = self.attribute_values
 
     DBConnection.execute(<<-SQL, *values)
@@ -120,10 +121,28 @@ class SQLObject
   end
 
   def update
-    
+    cols = self.class.columns[1..-1]
+    set_line = cols.map { |col| "#{col} = ?" }.join(', ')
+
+    #for update, values put in DOES have id value
+    values = self.attribute_values[1..-1]
+    id = self.attribute_values.first
+
+    DBConnection.execute(<<-SQL, *values, id)
+      UPDATE
+        #{self.class.table_name}
+      SET
+        #{set_line}
+      WHERE
+        id = ?
+    SQL
   end
 
   def save
-    # ...
+    if self.class.find(id)
+      self.update
+    else
+      self.insert
+    end
   end
 end

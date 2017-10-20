@@ -26,6 +26,7 @@ describe 'Searchable' do
 
   it '#where can return multiple objects' do
     humans = Human.where(house_id: 1)
+    # p humans
     expect(humans.length).to eq(2)
   end
 
