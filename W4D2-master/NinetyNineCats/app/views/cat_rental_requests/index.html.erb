@@ -1,0 +1,8 @@
+<h1>List of Rental Requests</h1>
+
+<ul>
+  <% @rental_requests.each do |rental_request| %>
+    <li><%= rental_request.cat.name %></li>
+  <% end %>
+
+</ul>

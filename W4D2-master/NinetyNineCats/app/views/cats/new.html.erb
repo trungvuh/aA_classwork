@@ -1,0 +1,38 @@
+<h1> Add Cat to the Pack </h1>
+
+<%= render 'form', action: :new, cat: @cat %>
+
+<!-- <form  action="<%= cats_url %>" method="post">
+  <label for="date"> Birthday </label>
+  <input id="date" type="date" name="cat[birth_date]">
+
+<br>
+  <label for="name"> Name </label>
+  <input id="name" type="text" name="cat[name]">
+
+<br>
+  <label for="color"> Color </label>
+  <select id="color" name="cat[color]">
+    <option disabled selected> --select a color-- </option>
+    <% Cat::COLOR.each do |color| %>
+      <option value="<%=color%>"> <%=color%> </option>
+    <% end %>
+  </select>
+<br>
+
+  <label > Sex: </label>
+
+  <input id="M" type="radio" name="cat[sex]" value = 'M' >
+  <label for="M">M</label>
+
+  <input id="F" type="radio" name="cat[sex]" value = 'F'>
+  <label for="F">F</label>
+
+<br>
+  <label for="description"> Description: </label>
+  <textarea name="cat[description]" ></textarea>
+
+<br><br>
+  <input type="submit" value="Submit a new cat">
+
+</form> -->

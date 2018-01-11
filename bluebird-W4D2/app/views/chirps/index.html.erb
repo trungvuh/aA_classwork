@@ -1,0 +1,5 @@
+<%= link_to "Create New Chirp", new_chirp_url %>
+
+<% @chirps.each do |chirp| %>
+  <%= render 'chirp', chirp: chirp, action: :index %>
+<% end %>
