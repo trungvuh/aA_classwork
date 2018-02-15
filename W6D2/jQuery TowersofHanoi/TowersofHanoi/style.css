@@ -1,0 +1,55 @@
+h1 {
+  align-items: center;
+}
+
+ul {
+  width : 600px;
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.one {
+  width: 60px;
+  height: 50px;
+  background: teal;
+  margin: 10px;
+
+  border-radius: 40px;
+}
+
+.two {
+  width: 120px;
+  height: 50px;
+  background: teal;
+  margin: 10px;
+  border-radius: 40px;
+}
+
+.three {
+  width: 180px;
+  height: 50px;
+  background: teal;
+  margin: 10px;
+  border-radius: 40px;
+}
+
+p {
+  width: 180px;
+  height: 20px;
+  background: black;
+}
+
+p:hover {
+  background: blue;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+  /*display: block;*/
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
